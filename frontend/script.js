@@ -1,19 +1,28 @@
 // Capturar el evento "Enter" en el input para enviar el mensaje
 document.getElementById("mensaje").addEventListener("keypress", function(event) {
     if (event.key === "Enter") { 
-        let mensaje = this.value;
-        if (mensaje.trim() !== "") {
-            fetch('http://127.0.0.1:5000/mensaje', {
+        let mensaje = this.value.trim();
+        if (mensaje !== "") {
+            console.log("Enviando mensaje:", mensaje);  // Verificar si el mensaje se captura
+
+            fetch('http://localhost:4000/mensaje', { 
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ mensaje: mensaje })
             })
-            .then(response => response.json())
-            .then(data => alert("Mensaje: " + data.mensaje))
-            .catch(error => console.error("Error:", error));
+            .then(response => {
+                console.log("Respuesta recibida:", response);
+                return response.json();
+            })
+            .then(data => {
+                console.log("Mensaje del servidor:", data);
+                alert("Mensaje: " + data.mensaje);
+            })
+            .catch(error => console.error("Error en fetch:", error));
         }
     }
 });
+
 
 // Configuración de los colores
 let colores = [
@@ -32,3 +41,4 @@ document.getElementById("btnColor").addEventListener("click", function() {
 
     indice = (indice + 1) % colores.length;
 });
+
