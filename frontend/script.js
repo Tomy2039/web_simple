@@ -1,9 +1,10 @@
 // Capturar el evento "Enter" en el input para enviar el mensaje
-document.getElementById("mensaje").addEventListener("keypress", function(event) {
+const inputMensaje = document.getElementById("mensaje")
+inputMensaje.addEventListener("keypress", function(event) {
     if (event.key === "Enter") { 
         let mensaje = this.value.trim();
         if (mensaje !== "") {
-            console.log("Enviando mensaje:", mensaje);  // Verificar si el mensaje se captura
+            console.log("Enviando mensaje:", mensaje);  
 
             fetch('http://localhost:4000/mensaje', { 
                 method: 'POST',
@@ -26,9 +27,9 @@ document.getElementById("mensaje").addEventListener("keypress", function(event) 
 
 // Configuración de los colores
 let colores = [
-    { fondo: "white", texto: "black" },
-    { fondo: "black", texto: "white" },
-    { fondo: "lightblue", texto: "red" }
+    { fondo: "white", texto: "black", inputFondo: "white", inputTexto: "black" },
+    { fondo: "black", texto: "white", inputFondo: "black", inputTexto: "white" },
+    { fondo: "lightblue", texto: "red", inputFondo: "lightblue", inputTexto: "red" }
 ];
 
 let indice = 0;
@@ -39,6 +40,11 @@ document.getElementById("btnColor").addEventListener("click", function() {
     document.body.style.backgroundColor = colorActual.fondo;
     document.body.style.color = colorActual.texto;
 
+    inputMensaje.style.backgroundColor = colorActual.inputFondo;
+    inputMensaje.style.color = colorActual.inputTexto;
+    
     indice = (indice + 1) % colores.length;
 });
+
+document.getElementById()
 
