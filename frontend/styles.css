@@ -1,0 +1,11 @@
+body {
+    transition: background-color 0.5s, color 0.5s;
+    text-align: center;
+    padding: 50px;
+}
+
+input, button {
+    padding: 10px;
+    font-size: 16px;
+    margin: 10px;
+}
